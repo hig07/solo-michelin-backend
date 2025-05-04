@@ -3,6 +3,7 @@ package com.michelin.model;
 import jakarta.persistence.Id;
 
 public class Restaurant {
+	//Restaurant 테이블
 	
 	@Id
     private Long id;			//음식점 고유 ID
