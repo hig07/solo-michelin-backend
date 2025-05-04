@@ -1,0 +1,24 @@
+
+# Build directory
+target/
+
+# IDE files
+.idea/
+.vscode/
+.classpath
+.project
+
+# Logs
+*.log
+
+# JAR and WAR files
+*.jar
+*.war
+
+# Spring Boot application config files
+application.properties
+application.yml
+
+# Developer specific files
+*.iml
+*.swp
