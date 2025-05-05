@@ -1,4 +1,4 @@
-package com.michelin.model;
+package com.michelin.entity;
 import jakarta.persistence.*;
 
 @Entity
