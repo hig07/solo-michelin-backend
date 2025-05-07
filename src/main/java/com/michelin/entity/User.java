@@ -1,8 +1,18 @@
 package com.michelin.entity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +27,11 @@ public class User {
     @Column(nullable = false, length = 100)
     private String password;
 
-    @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-    private String created; // 가입일
+    private LocalDateTime created;
 
-    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
-    private int deleted;
+    private boolean deleted;
 
+    protected void onCreate() {
+        this.created = LocalDateTime.now();
+    }
 }
