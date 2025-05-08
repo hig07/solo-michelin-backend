@@ -1,8 +1,7 @@
-package com.michelin.controller;
+package com.michelin.controller.restaurant;
 
-import com.michelin.dto.RestaurantDto;
-import com.michelin.entity.Restaurant;
-import com.michelin.service.RestaurantService;
+import com.michelin.dto.restaurant.RestaurantDto;
+import com.michelin.service.restaurant.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

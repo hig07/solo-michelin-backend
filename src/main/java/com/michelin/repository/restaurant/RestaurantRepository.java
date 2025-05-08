@@ -1,5 +1,5 @@
-package com.michelin.repository;
-import com.michelin.entity.Restaurant;
+package com.michelin.repository.restaurant;
+import com.michelin.entity.restaurant.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

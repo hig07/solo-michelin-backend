@@ -1,11 +1,10 @@
-package com.michelin.controller;
+package com.michelin.controller.user;
 
 
-import com.michelin.dto.UserRequest;
-import com.michelin.dto.UserResponse;
-import com.michelin.service.UserService;
+import com.michelin.dto.user.UserRequest;
+import com.michelin.dto.user.UserResponse;
+import com.michelin.service.user.UserService;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

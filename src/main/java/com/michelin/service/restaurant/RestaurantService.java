@@ -1,6 +1,6 @@
-package com.michelin.service;
+package com.michelin.service.restaurant;
 
-import com.michelin.dto.RestaurantDto;
+import com.michelin.dto.restaurant.RestaurantDto;
 import java.util.List;
 
 public interface RestaurantService {

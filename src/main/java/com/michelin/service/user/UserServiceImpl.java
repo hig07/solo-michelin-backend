@@ -1,22 +1,20 @@
-package com.michelin.service;
+package com.michelin.service.user;
 
-import com.michelin.dto.UserRequest;
-import com.michelin.dto.UserResponse;
-import com.michelin.entity.User;
-import com.michelin.repository.UserRepository;
+import com.michelin.dto.user.UserRequest;
+import com.michelin.dto.user.UserResponse;
+import com.michelin.entity.user.User;
+import com.michelin.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.PublicKey;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 

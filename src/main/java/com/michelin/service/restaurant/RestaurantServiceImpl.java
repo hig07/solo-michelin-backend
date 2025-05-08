@@ -1,8 +1,8 @@
-package com.michelin.service;
+package com.michelin.service.restaurant;
 
-import com.michelin.dto.RestaurantDto;
-import com.michelin.entity.Restaurant;
-import com.michelin.repository.RestaurantRepository;
+import com.michelin.dto.restaurant.RestaurantDto;
+import com.michelin.entity.restaurant.Restaurant;
+import com.michelin.repository.restaurant.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

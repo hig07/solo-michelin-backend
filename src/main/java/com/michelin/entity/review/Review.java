@@ -1,4 +1,6 @@
-package com.michelin.entity;
+package com.michelin.entity.review;
+import com.michelin.entity.restaurant.Restaurant;
+import com.michelin.entity.user.User;
 import jakarta.persistence.*;
 
 @Entity

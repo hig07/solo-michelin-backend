@@ -1,6 +1,6 @@
-package com.michelin.dto;
+package com.michelin.dto.user;
 
-import com.michelin.entity.User;
+import com.michelin.entity.user.User;
 import lombok.Builder;
 import lombok.Getter;
 

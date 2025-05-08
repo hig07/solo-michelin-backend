@@ -1,7 +1,7 @@
-package com.michelin.service;
+package com.michelin.service.user;
 
-import com.michelin.dto.UserRequest;
-import com.michelin.dto.UserResponse;
+import com.michelin.dto.user.UserRequest;
+import com.michelin.dto.user.UserResponse;
 
 import java.util.List;
 

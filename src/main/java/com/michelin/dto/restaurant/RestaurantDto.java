@@ -1,4 +1,4 @@
-package com.michelin.dto;
+package com.michelin.dto.restaurant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

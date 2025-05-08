@@ -1,4 +1,4 @@
-package com.michelin.dto;
+package com.michelin.dto.user;
 
 
 import jakarta.validation.constraints.Email;

@@ -1,6 +1,6 @@
-package com.michelin.repository;
+package com.michelin.repository.user;
 
-import com.michelin.entity.User;
+import com.michelin.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
