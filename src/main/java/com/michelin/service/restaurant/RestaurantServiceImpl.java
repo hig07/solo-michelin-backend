@@ -5,6 +5,7 @@ import com.michelin.dto.restaurant.RestaurantResponse;
 import com.michelin.entity.restaurant.Restaurant;
 import com.michelin.repository.restaurant.RestaurantRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +21,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    @Transactional
     public RestaurantResponse createRestaurant(RestaurantRequest request) {
         Restaurant restaurant = new Restaurant();
         restaurant.setName(request.getName());
@@ -50,6 +52,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    @Transactional
     public RestaurantResponse updateRestaurant(Long id, RestaurantRequest request) {
         Restaurant r = restaurantRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("음식점 정보를 찾을 수 없습니다."));
@@ -63,6 +66,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    @Transactional
     public void deleteRestaurant(Long id) {
         Restaurant r = restaurantRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("음식점 정보를 찾을 수 없습니다."));

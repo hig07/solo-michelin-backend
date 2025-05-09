@@ -2,9 +2,20 @@ package com.michelin.entity.review;
 import com.michelin.entity.restaurant.Restaurant;
 import com.michelin.entity.user.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "review")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +36,10 @@ public class Review {
     private String comment;  // 한줄평
 
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-    private String created;  // 작성일
+    private LocalDateTime created;
 
     @Column
-    private String modified;  // 수정일 (nullable)
+    private LocalDateTime modified;
 
     @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
     private int deleted;  // 삭제 여부 (0: 정상, 1: 삭제됨)
