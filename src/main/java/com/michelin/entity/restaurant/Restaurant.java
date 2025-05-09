@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "restaurant")
 @Getter
@@ -35,7 +37,7 @@ public class Restaurant {
 	private float avg_rating;  // 평균 별점
 
 	@Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-	private String created;  // 등록일
+	private LocalDateTime created;
 
 	@Column(columnDefinition = "TINYINT(1) DEFAULT 0")
 	private int deleted;  // 삭제 여부 (0: 정상, 1: 삭제됨)

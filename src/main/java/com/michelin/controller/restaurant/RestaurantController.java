@@ -1,10 +1,9 @@
 package com.michelin.controller.restaurant;
 
-import com.michelin.dto.restaurant.RestaurantDto;
+import com.michelin.dto.restaurant.RestaurantRequest;
+import com.michelin.dto.restaurant.RestaurantResponse;
 import com.michelin.service.restaurant.RestaurantService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,25 +12,34 @@ import java.util.List;
 @RequestMapping("/api/restaurants")
 public class RestaurantController {
 
-    @Autowired
-    private RestaurantService restaurantService;
+    private final RestaurantService restaurantService;
 
-    // 전체 음식점 조회
+    public RestaurantController(RestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
+    }
+
+    @PostMapping
+    public RestaurantResponse createRestaurant(@RequestBody @Valid RestaurantRequest request) {
+        return restaurantService.createRestaurant(request);
+    }
+
     @GetMapping
-    public List<RestaurantDto> getAllRestaurants() {
+    public List<RestaurantResponse> getAllRestaurants() {
         return restaurantService.getAllRestaurants();
     }
 
-    // ID로 음식점 조회
     @GetMapping("/{id}")
-    public RestaurantDto getRestaurantById(@PathVariable Long id){
+    public RestaurantResponse getRestaurantById(@PathVariable Long id) {
         return restaurantService.getRestaurantById(id);
     }
 
-    // 음식점 등록
-    @PostMapping
-    public ResponseEntity<RestaurantDto> createRestaurant(@RequestBody RestaurantDto dto){
-        RestaurantDto created = restaurantService.createRestaurant(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    @PutMapping("/{id}")
+    public RestaurantResponse updateRestaurant(@PathVariable Long id, @RequestBody @Valid RestaurantRequest request) {
+        return restaurantService.updateRestaurant(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteRestaurant(@PathVariable Long id) {
+        restaurantService.deleteRestaurant(id);
     }
 }

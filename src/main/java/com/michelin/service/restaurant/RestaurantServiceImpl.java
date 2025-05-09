@@ -1,74 +1,73 @@
 package com.michelin.service.restaurant;
 
-import com.michelin.dto.restaurant.RestaurantDto;
+import com.michelin.dto.restaurant.RestaurantRequest;
+import com.michelin.dto.restaurant.RestaurantResponse;
 import com.michelin.entity.restaurant.Restaurant;
 import com.michelin.repository.restaurant.RestaurantRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
-    @Autowired
-    private RestaurantRepository restaurantRepository;
+    private final RestaurantRepository restaurantRepository;
+
+    public RestaurantServiceImpl(RestaurantRepository restaurantRepository) {
+        this.restaurantRepository = restaurantRepository;
+    }
 
     @Override
-    public List<RestaurantDto> getAllRestaurants() {
-        return restaurantRepository.findAll()
-                .stream()
-                .map(this::convertToDto)
+    public RestaurantResponse createRestaurant(RestaurantRequest request) {
+        Restaurant restaurant = new Restaurant();
+        restaurant.setName(request.getName());
+        restaurant.setAddress(request.getAddress());
+        restaurant.setCategory(request.getCategory());
+        restaurant.setMapUrl(request.getMarUrl());
+        restaurant.setAvgRating(0.0f);
+        restaurant.setCreated(LocalDateTime.now());
+        restaurant.setDeleted(0);
+
+        Restaurant saved = restaurantRepository.save(restaurant);
+        return RestaurantResponse.from(saved);
+    }
+
+    @Override
+    public List<RestaurantResponse> getAllRestaurants() {
+        return restaurantRepository.findAll().stream()
+                .filter(r -> r.getDeleted() == 0)
+                .map(RestaurantResponse::from)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public RestaurantDto getRestaurantById(Long id) {
-        Restaurant restaurant = restaurantRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("해당 ID의 음식점을 찾을 수 없습니다: " + id));
-        return convertToDto(restaurant);
+    public RestaurantResponse getRestaurantById(Long id) {
+        Restaurant r = restaurantRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("음식점 정보를 찾을 수 없습니다."));
+        return RestaurantResponse.from(r);
     }
 
     @Override
-    public RestaurantDto createRestaurant(RestaurantDto dto) {
-        Restaurant restaurant = new Restaurant();
-        restaurant.setName(dto.getName());
-        restaurant.setAddress(dto.getAddress());
-        restaurant.setCategory(dto.getCategory());
-        restaurant.setMapUrl(dto.getMapUrl());
-        restaurant.setAvgRating(dto.getAvgRating());
+    public RestaurantResponse updateRestaurant(Long id, RestaurantRequest request) {
+        Restaurant r = restaurantRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("음식점 정보를 찾을 수 없습니다."));
 
-        Restaurant saved = restaurantRepository.save(restaurant);
-        RestaurantDto result = new RestaurantDto();
-        result.setId(saved.getId());
-        result.setName(saved.getName());
-        result.setAddress(saved.getAddress());
-        result.setCategory(saved.getCategory());
-        result.setMapUrl(saved.getMapUrl());
-        result.setAvgRating(saved.getAvgRating());
-        return result;
+        r.setName(request.getName());
+        r.setAddress(request.getAddress());
+        r.setCategory(request.getCategory());
+        r.setMapUrl(request.getMarUrl());
+
+        return RestaurantResponse.from(restaurantRepository.save(r));
     }
 
-    // DTO <-> Entity 변환
-    private RestaurantDto convertToDto(Restaurant entity) {
-        RestaurantDto dto = new RestaurantDto();
-        dto.setId(entity.getId());
-        dto.setName(entity.getName());
-        dto.setAddress(entity.getAddress());
-        dto.setCategory(entity.getCategory());
-        dto.setMapUrl(entity.getMap_url());
-        dto.setAvgRating(entity.getAvg_rating());
-        return dto;
-    }
+    @Override
+    public void deleteRestaurant(Long id) {
+        Restaurant r = restaurantRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("음식점 정보를 찾을 수 없습니다."));
 
-    private Restaurant convertToEntity(RestaurantDto dto) {
-        Restaurant entity = new Restaurant();
-        entity.setName(dto.getName());
-        entity.setAddress(dto.getAddress());
-        entity.setCategory(dto.getCategory());
-        entity.setMap_url(dto.getMapUrl());
-        entity.setAvg_rating(dto.getAvgRating());
-        return entity;
+        r.setDeleted(1);
+        restaurantRepository.save(r);
     }
 }
