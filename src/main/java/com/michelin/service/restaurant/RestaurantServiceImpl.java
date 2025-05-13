@@ -28,6 +28,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurant.setAddress(request.getAddress());
         restaurant.setCategory(request.getCategory());
         restaurant.setMapUrl(request.getMarUrl());
+        restaurant.setImageUrl(request.getImageUrl());
         restaurant.setAvgRating(0.0f);
         restaurant.setCreated(LocalDateTime.now());
         restaurant.setDeleted(0);
@@ -61,6 +62,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         r.setAddress(request.getAddress());
         r.setCategory(request.getCategory());
         r.setMapUrl(request.getMarUrl());
+        r.setImageUrl(request.getImageUrl());
 
         return RestaurantResponse.from(restaurantRepository.save(r));
     }

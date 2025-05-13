@@ -36,5 +36,8 @@ public class ReviewController {
     public void deleteReview(@PathVariable Long id){
         reviewService.deleteReview(id);
     }
-
+    @GetMapping("/user/{userId}")
+    public List<ReviewResponse> getReviewsByUserId(@PathVariable Long userId) {
+        return reviewService.getReviewsByUserId(userId);
+    }
 }

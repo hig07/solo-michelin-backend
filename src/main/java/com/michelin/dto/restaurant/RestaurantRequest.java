@@ -17,4 +17,8 @@ public class RestaurantRequest {
     private String category;
 
     private String marUrl;
+
+    private String imageUrl;
+
+
 }
