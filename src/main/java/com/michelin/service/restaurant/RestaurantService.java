@@ -12,4 +12,7 @@ public interface RestaurantService {
     RestaurantResponse getRestaurantById(Long id);
     RestaurantResponse updateRestaurant(Long id, RestaurantRequest request);
     void deleteRestaurant(Long id);
+
+
+    List<RestaurantResponse> searchByName(String query);
 }

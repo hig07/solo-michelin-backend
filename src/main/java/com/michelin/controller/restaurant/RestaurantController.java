@@ -42,4 +42,14 @@ public class RestaurantController {
     public void deleteRestaurant(@PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
     }
+
+
+
+
+    @GetMapping(params = "query")
+    public List<RestaurantResponse> searchRestaurants(@RequestParam String query) {
+        return restaurantService.searchByName(query);
+    }
+
+
 }

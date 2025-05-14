@@ -76,4 +76,13 @@ public class RestaurantServiceImpl implements RestaurantService {
         r.setDeleted(1);
         restaurantRepository.save(r);
     }
+
+    public List<RestaurantResponse> searchByName(String query) {
+        List<Restaurant> results = restaurantRepository
+                .findByNameContainingIgnoreCaseAndDeleted(query, 0);
+        return results.stream()
+                .map(RestaurantResponse::from)
+                .collect(Collectors.toList());
+    }
+
 }
