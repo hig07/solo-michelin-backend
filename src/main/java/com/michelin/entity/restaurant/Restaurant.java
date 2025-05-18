@@ -36,6 +36,9 @@ public class Restaurant {
 	@Column(columnDefinition = "FLOAT DEFAULT 0.0")
 	private float avg_rating;  // 평균 별점
 
+	@Column(columnDefinition = "TEXT")  // 이미지 URL이 길 수도 있어서 TEXT로
+	private String imageUrl;
+
 	@Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
 	private LocalDateTime created;
 

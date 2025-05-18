@@ -77,4 +77,11 @@ public class ReviewServiceImpl implements ReviewService{
         review.setDeleted(1);
         reviewRepository.save(review);
     }
+
+    @Override
+    public List<ReviewResponse> getReviewsByUserId(Long userId) {
+        return reviewRepository.findByUserIdAndDeleted(userId, 0).stream()
+                .map(ReviewResponse::from)
+                .collect(Collectors.toList());
+    }
 }

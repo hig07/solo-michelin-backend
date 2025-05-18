@@ -14,6 +14,7 @@ public class RestaurantResponse {
     private String mapUrl;
     private float avgRating;
     private String created;
+    private String imageUrl;
 
     public static RestaurantResponse from(Restaurant restaurant){
         return RestaurantResponse.builder()
@@ -23,6 +24,7 @@ public class RestaurantResponse {
                 .category(restaurant.getCategory())
                 .mapUrl(restaurant.getMapUrl())
                 .avgRating(restaurant.getAvgRating())
+                .imageUrl(restaurant.getImageUrl())
                 .build();
     }
 
