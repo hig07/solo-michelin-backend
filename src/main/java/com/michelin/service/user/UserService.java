@@ -1,5 +1,6 @@
 package com.michelin.service.user;
 
+import com.michelin.dto.user.LoginRequest;
 import com.michelin.dto.user.UserRequest;
 import com.michelin.dto.user.UserResponse;
 
@@ -11,4 +12,7 @@ public interface UserService {
     UserResponse getUserById(Long id);
     UserResponse updateUser(Long id, UserRequest request);
     void deleteUser(Long id);
+    
+    //로그인
+    String login(LoginRequest request);
 }
