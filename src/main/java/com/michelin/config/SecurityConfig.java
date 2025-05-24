@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -40,6 +42,11 @@ public class SecurityConfig {
 //                .requestMatchers("/api/users/**").authenticated()        // 상세조회, 수정, 삭제는 인증 필요
                 .anyRequest().permitAll()
             );
-        return http.build(); // 반드시 SecurityFilterChain을 Bean으로 리턴해야 적용됩니다!
+        return http.build(); // 반드시 SecurityFilterChain을 Bean으로 리턴해야 적용된다!
+    }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
